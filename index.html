@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Text Editor</title>
+	<style>
+		#editor {
+			width: 500px;
+			height: 300px;
+			border: 1px solid #ccc;
+			padding: 10px;
+			font-size: 14px;
+			font-family: Arial;
+            margin: 20px;
+            
+		}
+   .head {
+border: 2px solid black;
+background-color: violet;
+color:  white;
+   }
+   .head:hover{
+    background-color:  brown;
+    color: aqua;
+    cursor: pointer;
+   } 
+   .btn{
+    cursor: pointer;
+    background-color: aquamarine;
+    color: cornflowerblue;
+   }
+	</style>
+</head>
+<body>
+    <center>
+        <h1 class="head">Text Editor</h1>
+        <div id="toolbar">
+            <button class="btn" onclick="bold()">Bold</button>
+            <button class="btn" onclick="italic()">Italic</button>
+            <button class="btn"  onclick="underline()">Underline</button>
+            <select class="btn" onchange="fontFamily()" id="font-family">
+                <option value="Arial">Arial</option>
+                <option value="Calibri">Calibri</option>
+                <option value="Times New Roman">Times New Roman</option>
+            </select>
+            <select class="btn" onchange="fontSize()" id="font-size">
+                <option value="10">10px</option>
+                <option value="12">12px</option>
+                <option value="14">14px</option>
+                <option value="16">16px</option>
+                <option value="18">18px</option>
+            </select>
+            <button onclick="color()">Color</button>
+            <input type="color" id="color-picker" onchange="applyColor()">
+        </div>
+        <div id="editor" contenteditable="true">This is the editable area</div>
+    </center>
+	
+	
+	<script>
+		function bold() {
+			document.execCommand("bold");
+		}
+		
+		function italic() {
+			document.execCommand("italic");
+		}
+		
+		function underline() {
+			document.execCommand("underline");
+		}
+		
+		function fontFamily() {
+			var font = document.getElementById("font-family").value;
+			document.execCommand("fontName", false, font);
+		}
+		
+		function fontSize() {
+			var size = document.getElementById("font-size").value;
+			document.execCommand("fontSize", false, size);
+		}
+		
+		function color() {
+			document.getElementById("color-picker").click();
+		}
+		
+		function applyColor() {
+			var color = document.getElementById("color-picker").value;
+			document.execCommand("foreColor", false, color);
+		}
+	</script>
+</body>
+</html>
